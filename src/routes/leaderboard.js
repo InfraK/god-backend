@@ -6,7 +6,8 @@ const router = Router();
 router.get('/', async (req, res) => {
   const games = await Game.aggregate([
     { $group: { _id: '$winner', count: { $sum: 1 } } },
-    { $sort: { count: -1 } }
+    { $sort: { count: -1 } },
+    { $limit: 10 }
   ]);
   return res.json(games);
 });

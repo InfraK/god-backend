@@ -12,6 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/leaderboard', leaderboard);
 app.use('/games', games);
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: true, message: err.message });
+});
 
 connectDb().then(() => console.log('Database connected'));
 

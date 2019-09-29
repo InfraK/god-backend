@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     { $sort: { count: -1 } },
     { $limit: 10 }
   ]);
-  res.json(games);
+  res.json({ games });
 });
 
 export default router;
